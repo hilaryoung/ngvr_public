@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <title>National Grid </title>
+    <script type="module" crossorigin src="/assets/index-C6NZjEW8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BE2dL77y.css">
+  </head>
+  <body>
+
+    <div id="overlay">
+      <div class="overlay-content">
+        <h2>Commercial Decision-Making Framework</h2>
+        <p>Use <strong>W,A,S,D</strong> to move, <strong>click and drag</strong> to look around.</p>
+        <p>Interact with all the animated objects!</p>
+        <button id="initiateButton">Start</button>
+      </div>
+    </div>
+
+    <!-- Receptionist Modal -->
+    <div id="introModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeIntro">&times;</span>
+
+        <div class="modal-scrollable-content">
+        <div class="modal-title">Welcome</div>
+        <div class="modal-body width80">
+          This immersive experience introduces you to the Commercial Decision-Making Framework, 
+          a central tool for smarter, role-based commercial decisions and operational awareness.
+          <br><br>
+          To help guide you through this journey:
+
+          <br>
+
+        </div>
+
+        <div class="row width90">
+            <div class="icon">
+              <img src="/img/star.gif" alt="IBM NG Logo" class="int-icon"/>
+            </div>
+            <div class="explanation">
+              <div class="modal-body">
+                <strong style="color: #00148C;">Click the Star</strong>
+                to learn more about the 
+                framework, features, or user roles.
+              </div>
+            </div>
+
+            <div class="icon">
+              <img src="/img/mtr.gif" alt="IBM NG Logo" class="int-icon"/>
+            </div>
+            <div class="explanation">
+              <div class="modal-body">
+                <strong style="color: #00148C;">Click the Meter</strong>
+                to launch a mini-game and test your 
+                understanding through interactive challenges.
+              </div>
+            </div>
+          </div>
+        <br>
+
+        </div>
+
+        <div class="interaction-container">
+          <img src="/img/ibmng.png" alt="Start Icon" class="start-image" />
+          <div id="startButton" class="start-button">Start</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2. Planning Modal -->
+    <div id="planningModal" class="modal">
+      <div class="modal-content">
+        
+        <!-- Close button (remains fixed) -->
+        <span class="close" id="closePlanning">&times;</span>
+        
+        <!-- Scrollable content starts here -->
+        <div class="modal-scrollable-content">
+          <div class="modal-secondary-title">Planning & Prioritisation</div>
+
+          <div class="width80">
+            <br>
+            <div class="text-highlight">
+              “Every successful project starts with a clear setup. At National Grid, how 
+              we define priorities, assess risks, and align incentives directly impacts 
+              our delivery strength.”
+            </div>
+
+            <div class="modal-body">
+              In this space, you’ll explore how our Planning & Prioritisation phase helps 
+              shape effective, informed commercial decisions. 
+              
+              <br><br>
+              Strong upfront thinking enables smarter 
+              trade-offs, ensures supplier relationships start on the right foot, and 
+              prevents avoidable downstream costs — financial, legal, or reputational.
+            </div>
+          </div>
+
+          <div class="interaction-container">
+            <img src="/img/ibmng.png" alt="Start Icon" class="start-image" />
+            <div class="start-button" id="planningContinue">Continue</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+
+
+    <!-- 2.2 planningMeterModal -->
+    <div id="planningMeterModal" class="modal">
+      <div class="modal-content">
+        
+        <!-- Sticky close button -->
+        <span class="close" id="closePlanningMeter">&times;</span>
+        
+        <!-- Scrollable content wrapper -->
+        <div class="modal-scrollable-content">
+          <div class="modal-secondary-title">Planning & Prioritisation: Risk Ranking Challenge</div>
+          <div class="modal-body">
+            Drag the cards below to rank the project decisions by risk, from highest to lowest.
+          </div>
+
+          <div id="dropZone" class="drop-zone"></div>
+
+          <div class="card-pool">
+            <div class="card" draggable="true" data-risk="high">High-stakes project lacks cross-department input</div>
+            <div class="card" draggable="true" data-risk="medium">Incentives tied to inputs rather than outcomes</div>
+            <div class="card" draggable="true" data-risk="low">No clear ownership of commercial KPIs</div>
+          </div>
+
+          <div id="feedbackSection" class="modal-body-text" style="display:none;">
+            <div class="text-highlight2">NG Best Practice Feedback:</div>
+            <ul id="feedbackList"></ul>
+          </div>
+
+          <button id="submitRanking" class="start-button margin-top-16">Submit Ranking</button>
+        </div>
+
+        <div class="interaction-container">
+            <img src="/img/ibmng.png" alt="Start Icon" class="start-image" />
+            <div class="start-button" id="planningContinueGame" style="display: none;">Continue</div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- 3.1 Supplier Relationship -->
+    <div id="supplierModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeSupplier">&times;</span>
+        <div class="modal-scrollable-content">
+          <div class="modal-secondary-title">Supplier Relationship</div>
+
+          <div class="width80">
+            <br>
+            <div class="text-highlight">
+              “A successful supplier relationship starts long before contracts are signed. 
+              At National Grid, we shape partnerships that go beyond transactions, 
+              focused on trust, accountability, and shared outcomes.”
+            </div>
+
+            <div class="modal-body">
+              This room explores what the “ideal” supplier relationship should look like 
+              at National Grid. Thinking through that relationship 
+              <span class="highlight-bold-blue">before</span>
+              negotiations begin is key.
+              
+              <br><br>
+              Strong upfront thinking enables smarter 
+              trade-offs, ensures supplier relationships start on the right foot, and 
+              prevents avoidable downstream costs; financial, legal, or reputational.
+            </div>
+          </div>
+
+        </div>
+        <!--footer-->
+        <div class="interaction-container">
+            <img src="/img/ibmng.png" alt="Start Icon" class="start-image" />
+            <div class="start-button" id="supplierContinue">Continue</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--3.2 Supplier Relationship Modal Minigame -->
+    <div id="supplierMeterModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeSupplierMeter">&times;</span>
+        <div class="modal-scrollable-content">
+          <div class="modal-secondary-title">Supplier Relationship: Risk Scenario Challenge</div>
+          <div class="modal-body">
+            
+            Read each supplier scenario carefully and choose the best course of action.  
+            You'll get feedback after each choice, and can only proceed once you’ve answered.  
+            The goal is to strengthen early-stage supplier relationships by applying NG best practices.
+            <br><br>
+          </div>
+          
+          <!--mini game placeholder -->
+          <div id="scenarioGame" class="scenario-game">
+            <div id="scenarioContainer"></div>
+            <div id="scenarioFeedback" class="scenario-feedback"></div>
+            <button id="nextScenarioBtn" class="start-button" style="display: none; margin-top: 12px;">Next</button>
+          </div>
+
+          
+        </div>
+
+        <!--footer-->
+        <div class="interaction-container">
+          <img src="/img/ibmng.png" alt="Start Icon" class="start-image" />
+          <div class="start-button" id="supplierContinueGame" style="display: none;">Continue</div>
+        </div>
+      </div>
+    </div>
+
+
+
+     <!-- 4.1 Commercial Modal -->
+    <div id="commercialModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeCommercial">&times;</span>
+        <div class="modal-scrollable-content">
+          <div class="modal-secondary-title">Commercial Wisdom & Lessons</div>
+
+          <div class="width80">
+            <br>
+            <div class="text-highlight">
+              “Frameworks encode experience, including past mistakes.”
+            </div>
+
+            <div class="modal-body">
+              This room focuses on <span class="highlight-bold-blue">commercial wisdom</span>: the insight gained from navigating complex supplier relationships and the lessons hidden in past contract missteps.
+              <br><br>
+              At National Grid, we’re constantly evolving how we approach contracts and commercial agreements. By learning from what hasn’t worked; missed risks, vague scopes, poor incentives—we design frameworks that protect value and promote partnership.
+              <br><br>
+              Being commercially aware also means keeping an eye on external signals: market trends, supplier behaviours, and economic shifts that shape how deals should be structured.
+            </div>
+          </div>
+        </div>
+
+        <!--footer-->
+        <div class="interaction-container">
+          <img src="/img/ibmng.png" alt="Start Icon" class="start-image" />
+          <div class="start-button" id="commercialContinue">Continue</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 4.2 Commercial Wisdom Minigame -->
+    <div id="commercialMeterModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeCommercialMeter">&times;</span>
+        <div class="modal-scrollable-content">
+          <div class="modal-secondary-title">Match the Commercial Misstep</div>
+
+          <div class="modal-body">
+            Every failed outcome tells a story — often one of vague expectations, missing incentives, or ignored warning signs.
+            <br><br>
+            Your challenge: <span class="highlight-bold-blue">Match each failed contract outcome to the commercial mistake that most likely caused it.</span>
+            <br><br>
+            Strengthen your commercial instincts by spotting the patterns behind costly missteps.
+          </div>
+
+          <!-- Matching game area -->
+          <div id="commercialMatchGame" class="match-game">
+            <div class="match-column match-left">
+              <div class="match-heading">Failed Contract Outcome</div>
+              <!-- Left items will be injected here -->
+            </div>
+            <div class="match-column match-right">
+              <div class="match-heading">Likely Mistake</div>
+              <!-- Right items will be injected here -->
+            </div>
+          </div>
+      </div>
+      <!--footer-->
+        <div class="interaction-container">
+          <img src="/img/ibmng.png" alt="Start Icon" class="start-image" />
+          <div class="start-button" id="commercialContinueGame" style="display: none;">Continue</div>
+        </div>
+    </div>
+
+
+
+
+  </body>
+</html>
